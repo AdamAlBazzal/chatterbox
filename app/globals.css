@@ -19,3 +19,13 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+.box {
+  position: relative;
+  text-align: center;
+  border: #ffffff solid 2px;
+  border-radius: 25px;
+  border-bottom: none;
+  border-left: none;
+}
+
+
