@@ -4,11 +4,17 @@ interface Props {
   placeholder: string;
   style?: string;
   isPassword?: boolean;
+  lockIsVisible?: boolean;
 }
-const AuthTextField = ({ placeholder, style, isPassword = false }: Props) => {
+const AuthTextField = ({
+  placeholder,
+  style,
+  isPassword = false,
+  lockIsVisible = true,
+}: Props) => {
   return (
     <div className={style}>
-      {isPassword && (
+      {isPassword && lockIsVisible && (
         <Image src="/lock.svg" width={25} height={25} alt="lock image" />
       )}
       <input
