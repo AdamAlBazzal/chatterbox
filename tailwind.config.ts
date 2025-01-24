@@ -7,6 +7,10 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily:{
+      body: ['roboto'], 
+      heading: ['poppins'], 
+    },
     extend: {
       colors: {
         background: "var(--background)",
