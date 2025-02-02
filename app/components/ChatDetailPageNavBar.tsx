@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import MoreBtn from "./MoreBtn";
 import BackBtn from "./BackBtn";
+
 const ChatDetailPageNavBar = () => {
   return (
     <div className="sticky top-0 bg-primary left-0 w-full">

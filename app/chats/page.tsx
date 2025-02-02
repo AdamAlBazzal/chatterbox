@@ -1,11 +1,15 @@
 import React from "react";
 import Navbar from "../components/ChatsPageNavBar";
 import Chatlist from "../components/ChatList";
-const chatList = () => {
+import { getAccounts } from "./actions";
+import { AccountDTO } from "../dto/AccountDto";
+
+const chatList = async () => {
+  const chatData = await getAccounts();
   return (
     <div>
       <Navbar />
-      <Chatlist />
+      <Chatlist accountList={chatData} />
     </div>
   );
 };

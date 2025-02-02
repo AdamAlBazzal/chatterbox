@@ -7,17 +7,23 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily:{
-      body: ['roboto'], 
-      heading: ['poppins'], 
+    fontFamily: {
+      body: ["roboto"],
+      heading: ["poppins"],
     },
     extend: {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#2C3E50",
-        secondary: "#6D6D6D",
-        accent: "#3498DB"
+        primary: {
+          light: "#f5f7fb",
+          dark: "#1a202c",
+        },
+        secondary: {
+          light: "#000",
+          dark: "#fff",
+        },
+        accent: "#845bf4",
       },
     },
   },

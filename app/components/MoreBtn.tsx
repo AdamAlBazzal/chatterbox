@@ -1,8 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
-const MoreBtn = () => {
+
+interface Props {
+  onClick: () => void;
+}
+
+const MoreBtn = ({ onClick }: Props) => {
   return (
-    <button className="focus:outline-none flex">
+    <button className="focus:outline-none flex" onClick={onClick}>
       <Image
         className="self-center"
         src="/more.png"
