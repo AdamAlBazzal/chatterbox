@@ -20,7 +20,7 @@ const ContextMenu = ({ onClickOutside, show }: Props) => {
   return (
     show && (
       <div
-        className="fixed top-14 right-0 w-auto min-w-32 bg-primary shadow-md shadow-slate-600 z-10"
+        className="fixed top-14 right-0 w-auto min-w-32 bg-primary shadow-md shadow-slate-600 z-1"
         ref={ref}
       >
         <ul>

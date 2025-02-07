@@ -4,13 +4,14 @@ import { useActionState } from "react";
 import React from "react";
 import { login } from "../auth/actions";
 import Image from "next/image";
+import SubmitButton from "./SubmitButton";
 
-const initialState = {
-  message: "",
+const initialState: AccountFormState = {
+  successMessage: "",
 };
 
 const LoginForm = () => {
-  const [state, formAction, pending] = useActionState(login, initialState);
+  const [serverState, formAction] = useActionState(login, initialState);
 
   return (
     <form className="font-sans" action={formAction}>
@@ -44,6 +45,9 @@ const LoginForm = () => {
                 className="bg-transparent  border-2 dark:text-primary-light  border-gray-300 text-gray-900 text-sm block w-full ps-10 p-2.5 focus:border-accent focus:outline-none   "
               />
             </div>
+            <p className="text-xs text-red-500 mt-1">
+              {serverState.errors?.email}
+            </p>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -88,17 +92,14 @@ const LoginForm = () => {
                 className="bg-transparent dark:text-primary-light  border-2 border-gray-300 text-gray-900 text-sm block w-full ps-10 p-2.5 focus:border-accent focus:outline-none   "
               />
             </div>
+            <p className="text-xs text-red-500 mt-1">
+              {serverState.errors?.password}
+            </p>
           </div>
 
           <div>
-            <input
-              type="submit"
-              name="submit"
-              className=" w-full bg-accent text-primary-light text-center px-2 py-2 focus:outline-none cursor-pointer"
-              value="Submit"
-            />
+            <SubmitButton />
           </div>
-          <p aria-live="polite">{}</p>
         </div>
       </div>
     </form>

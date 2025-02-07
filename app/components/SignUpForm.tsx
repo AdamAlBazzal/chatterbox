@@ -1,19 +1,24 @@
 "use client";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useRef } from "react";
 import Link from "next/link";
 import { signUp } from "../auth/actions";
 import { useFormState } from "react-dom";
+import SubmitButton from "./SubmitButton";
 
-const initialState = {
-  message: "",
+const initialState: Promise<AccountFormState> | AccountFormState = {
+  successMessage: "",
 };
 
 const SignUpForm = () => {
-  const [state, formAction] = useActionState(signUp, initialState);
+  const [serverState, formAction] = useActionState<AccountFormState, FormData>(
+    signUp,
+    initialState
+  );
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <form action={formAction}>
+    <form action={formAction} ref={formRef}>
       <div className="flex flex-col gap-5 justify-center">
         <div className=" flex flex-col justify-center gap-3">
           <div className="flex flex-col gap-1">
@@ -26,10 +31,14 @@ const SignUpForm = () => {
             <input
               type="text"
               id="fullNameField"
+              name="fullName"
               aria-describedby="helper-text-explanation"
               className="bg-transparent  border-2 border-gray-300 text-gray-900 dark:text-primary-light text-sm focus:border-accent focus:outline-none  block w-full p-2.5 "
               placeholder="John Doe"
             />
+            <p className="text-xs text-red-500 mt-1">
+              {serverState.errors?.fullName}
+            </p>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -40,7 +49,7 @@ const SignUpForm = () => {
               Email
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+              <div className="absolute inset-y-0 bottom-0 start-0 flex items-center ps-3.5 pointer-events-none">
                 <svg
                   className="w-4 h-4 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
@@ -60,6 +69,9 @@ const SignUpForm = () => {
                 className="bg-transparent  border-2 dark:text-primary-light  border-gray-300 text-gray-900 text-sm block w-full ps-10 p-2.5 focus:border-accent focus:outline-none   "
               />
             </div>
+            <p className="text-xs text-red-500 mt-1">
+              {serverState.errors?.username}
+            </p>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -104,6 +116,9 @@ const SignUpForm = () => {
                 className="bg-transparent dark:text-primary-light  border-2 border-gray-300 text-gray-900 text-sm block w-full ps-10 p-2.5 focus:border-accent focus:outline-none   "
               />
             </div>
+            <p className="text-xs text-red-500 mt-1">
+              {serverState.errors?.password}
+            </p>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -148,15 +163,13 @@ const SignUpForm = () => {
                 className="bg-transparent border-2 dark:text-primary-light border-gray-300 text-gray-900 text-sm block w-full ps-10 p-2.5 focus:border-accent focus:outline-none  "
               />
             </div>
+            <p className="text-xs text-red-500 mt-1">
+              {serverState.errors?.confirmPassword}
+            </p>
           </div>
 
           <div>
-            <input
-              type="submit"
-              name="submit"
-              className=" w-full bg-accent text-primary-light text-center px-2 py-2 focus:outline-none cursor-pointer"
-              value="Submit"
-            />
+            <SubmitButton />
           </div>
           <p aria-live="polite">{}</p>
         </div>
